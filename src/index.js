@@ -48,12 +48,12 @@ export default function (app, globalOptions) {
 }
 // 用户配置校验
 const checkOptions = (options = {}) => {
-    if(typeof options.close !== 'boolean') delete options.close
+    if (typeof options.close !== 'boolean') delete options.close
     if (typeof options.showCount !== 'number' || options.showCount < 0) delete options.showCount
     if (!deeps.includes(options.deep)) delete options.deep
     if (!positions.includes(options.position)) delete options.position
-    if(!types.includes(options.type)) delete options.type
-    if(typeof duration === 'number') delete options.duration
+    if (!types.includes(options.type)) delete options.type
+    if (typeof duration === 'number') delete options.duration
     return options;
 }
 

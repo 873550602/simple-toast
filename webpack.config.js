@@ -1,7 +1,9 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
-    mode: 'production',
+    mode: 'none',
     entry: '/src/index.js',
     output: {
         path: path.resolve(__dirname, 'lib'),
@@ -47,6 +49,11 @@ module.exports = {
         extensions: ['.ts', '.js'],
     },
     plugins: [
-        new VueLoaderPlugin()
+        new CleanWebpackPlugin(),
+        new VueLoaderPlugin(),
+
+        // new UglifyJsPlugin({
+        //     test: /\.js$/
+        // }),
     ]
 }

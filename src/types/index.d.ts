@@ -1,3 +1,4 @@
+import Vue from "vue";
 export declare type ToastOptionsType = {
     deep?: 0 | 1 | 2 | 3
     close?: boolean
@@ -5,26 +6,23 @@ export declare type ToastOptionsType = {
     position?: 'ct' | 'rt' | 'lt' | 'cb' | 'lb' | 'rb',
     type?: 'success' | 'info' | 'warn' | 'error',
     duration?: number
-    colors?: colorsType
+    colors?: ColorsType
 }
-export declare type colorsType = {
+export declare type ColorsType = {
     [key: string]: string
 }
 export declare type ToastType = {
-    show: (message: string, options: toastOptionsType) => void;
-    success: (message: string, options: toastOptionsType) => void;
-    info: (message: string, options: toastOptionsType) => void;
-    warn: (message: string, options: toastOptionsType) => void;
-    error: (message: string, options: toastOptionsType) => void;
+    show: (message: string, options: ToastOptionsType) => void;
+    success: (message: string, options: ToastOptionsType) => void;
+    info: (message: string, options: ToastOptionsType) => void;
+    warn: (message: string, options: ToastOptionsType) => void;
+    error: (message: string, options: ToastOptionsType) => void;
 }
 
-export module toast {
 
-}
+export declare function simpToast(app: typeof Vue, options: ToastOptionsType): void
 
-declare module 'simp-toast' {
 
-}
 declare module 'vue/types/vue' {
     interface Vue {
         $toast: {
@@ -36,3 +34,5 @@ declare module 'vue/types/vue' {
         }
     }
 }
+
+declare module "simp-toast"
