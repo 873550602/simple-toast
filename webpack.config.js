@@ -6,6 +6,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'lib'),
         filename: 'index.bundle.js',
+        library: 'simpToast',
+        libraryTarget: 'umd'
     },
     module: {
         rules: [{

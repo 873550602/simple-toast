@@ -34,6 +34,7 @@
   </div>
 </template>
 <script>
+import Vue from "vue";
 let index = 0;
 const colors = {
   success: "#4CAF50",
@@ -81,7 +82,7 @@ const moveOut = async (el, value) => {
   const index = messages?.findIndex((item) => item.id === id);
   messages.splice(index, 1);
 };
-export default {
+export default Vue.extend({
   data() {
     return {
       // 用户保护元素节点正常插入和移除，避免点击过快导致的元素异常
@@ -169,7 +170,7 @@ export default {
       },
     },
   },
-};
+});
 </script>
 <style scoped>
 .toast-box {
