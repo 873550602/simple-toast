@@ -22,6 +22,9 @@ export module toast {
 
 }
 
+declare module 'simp-toast' {
+
+}
 declare module 'vue/types/vue' {
     interface Vue {
         $toast: {

@@ -1,21 +1,20 @@
-import { ToastOptionsType, ToastType } from "./types/types";
-import toast from '@/toast.vue'
+import toast from './toast.vue'
 import { deepClone } from "./utils";
 const deeps = [0, 1, 2, 3]
 const positions = ['ct', 'rt', 'lt', 'cb', 'lb', 'rb']
 const types = ['info', 'success', 'warn', 'error']
-let toastEl: any;
+let toastEl;
 const mountToast = () => {
-    toastEl = new (toast as any)({
+    toastEl = new (toast)({
         el: document.createElement('div')
     })
     document.body.appendChild(toastEl.$el)
 }
-export default function (app: any, globalOptions: ToastOptionsType) {
+export default function (app, globalOptions) {
     // 安装插件时初始化配置
-    const _options: ToastOptionsType = deepClone(checkOptions(globalOptions)!, {
-        deep: 1,
+    const _options = deepClone(checkOptions(globalOptions), {
         close: false,
+        deep: 1,
         showCount: 5,
         position: 'ct',
         type: "info",
@@ -30,17 +29,17 @@ export default function (app: any, globalOptions: ToastOptionsType) {
     // 挂载组件
     mountToast()
     toastEl.setColors(_options.colors)
-    const toast: ToastType = Object.create(null)
+    const toast = Object.create(null)
     // 新增show方法
-    toast.show = (message: string, options: ToastOptionsType) => {
+    toast.show = (message, options) => {
         const opt = Object.assign({}, _options, checkOptions(options))
         if (!message) return;
         toastEl.addMessage(message, opt)
     }
     // 新增info,error,success,warn
     for (const type of types) {
-        (toast as any)[type] = (message: string, options: ToastOptionsType = {}) => {
-            options.type = type as any;
+        (toast)[type] = (message, options = {}) => {
+            options.type = type;
             toast.show(message, options)
         }
     }
@@ -48,11 +47,13 @@ export default function (app: any, globalOptions: ToastOptionsType) {
     app.prototype.$toast = toast;
 }
 // 用户配置校验
-const checkOptions = (options: ToastOptionsType) => {
-    if (!options) return {};
-    if (options.showCount! < 0) delete options.showCount
-    if (!deeps.includes(options.deep!)) options.deep = 1
-    if (!positions.includes(options.position!)) options.position = 'ct'
-    return options || {};
+const checkOptions = (options = {}) => {
+    if(typeof options.close !== 'boolean') delete options.close
+    if (typeof option.showCount !== 'number' || options.showCount < 0) delete options.showCount
+    if (!deeps.includes(options.deep)) delete options.deep
+    if (!positions.includes(options.position)) delete options.position
+    if(!types.includes(options.type)) delete options.type
+    if(typeof duration === 'number') delete options.duration
+    return options;
 }
 
