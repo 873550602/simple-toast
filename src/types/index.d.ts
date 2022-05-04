@@ -12,11 +12,12 @@ export declare type ColorsType = {
     [key: string]: string
 }
 export declare type ToastType = {
-    show: (message: string, options: ToastOptionsType) => void;
-    success: (message: string, options: ToastOptionsType) => void;
-    info: (message: string, options: ToastOptionsType) => void;
-    warn: (message: string, options: ToastOptionsType) => void;
-    error: (message: string, options: ToastOptionsType) => void;
+    show: (message: string, options?: ToastOptionsType) => string
+    close: (id?: string) => void
+    info: (message: string, options?: ToastOptionsType) => string
+    success: (message: string, options?: ToastOptionsType) => string
+    warn: (message: string, options?: ToastOptionsType) => string
+    error: (message: string, options?: ToastOptionsType) => string
 }
 
 
@@ -25,13 +26,7 @@ export declare function simpToast(app: typeof Vue, options: ToastOptionsType): v
 
 declare module 'vue/types/vue' {
     interface Vue {
-        $toast: {
-            show: (message: string, options?: ToastOptionsType) => string
-            info: (message: string, options?: ToastOptionsType) => string
-            success: (message: string, options?: ToastOptionsType) => string
-            warn: (message: string, options?: ToastOptionsType) => string
-            error: (message: string, options?: ToastOptionsType) => string
-        }
+        $toast: ToastType
     }
 }
 

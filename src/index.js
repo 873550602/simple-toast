@@ -34,13 +34,15 @@ export default function (app, globalOptions) {
     toast.show = (message, options) => {
         const opt = Object.assign({}, _options, checkOptions(options))
         if (!message) return;
-        toastEl.addMessage(message, opt)
+        return toastEl.addMessage(message, opt)
     }
+    // 新增close方法
+    toast.close = (id) => toastEl.closeMessage(id)
     // 新增info,error,success,warn
     for (const type of types) {
         (toast)[type] = (message, options = {}) => {
             options.type = type;
-            toast.show(message, options)
+            return toast.show(message, options)
         }
     }
     // 将toast对象放到vue原型上

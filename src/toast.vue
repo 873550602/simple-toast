@@ -78,15 +78,14 @@ const moveOut = async (el, value) => {
   } else if (position.includes("b")) {
     el.style.transform = "translateY(-30px)";
   }
-  await delay(500);
+  // 会限制动画时长
+  await delay(1000);
   const index = messages?.findIndex((item) => item.id === id);
   messages.splice(index, 1);
 };
 export default Vue.extend({
   data() {
     return {
-      // 用户保护元素节点正常插入和移除，避免点击过快导致的元素异常
-      isAddMessage: true,
       colors,
       icons,
       messages: [],
@@ -100,11 +99,7 @@ export default Vue.extend({
       this.colors = colors;
     },
     // 添加弹框消息
-    async addMessage(message, options) {
-      if (!this.isAddMessage) {
-        console.log(this.isAddMessage);
-        return;
-      }
+    addMessage(message, options) {
       const id = "toast_id_" + index++;
       this.messages.unshift({
         show: true,
@@ -113,19 +108,15 @@ export default Vue.extend({
         options,
       });
       if (this.messages.length > options.showCount) {
-        this.isAddMessage = false;
-        await delay(600);
         this.messages
-          .slice(options.showCount)
-          .forEach((item) => (item.show = false));
-        this.isAddMessage = true;
+          .splice(options.showCount)
       }
       return id;
     },
     // 关闭弹框消息
     closeMessage(id) {
       const msg = this.messages.find((item) => item.id === id);
-      msg.show = false;
+      msg && (msg.show = false);
     },
     // 获取动态样式
     getStyle(msg) {
