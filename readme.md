@@ -28,6 +28,10 @@ this.$toast.info(message, options)
 this.$toast.error(message, options)
 this.$toast.success(message, options)
 this.$toast.warn(message, options)
+
+// 关闭方法
+const id = this.$toast.show(message,options)
+this.$toast.close(id)
 ```
 
 #### 配置
