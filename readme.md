@@ -38,14 +38,14 @@ this.$toast.close(id)
 
 **options**
 | 属性      | 说明                                             |
-| --------- | ------------------------------------------------ |
-| close     | 是否显示关闭按钮 类型 boolean                    |
-| deep      | 表示阴影的值， 可选值 [0,1,2,3]                  |
-| showCount | 同时可展示的数量 类型 number                     |
+| --------- | ----------------------------------------------- |
+| close     | 是否显示关闭按钮 类型 boolean                      |
+| deep      | 表示阴影的值， 可选值 [0,1,2,3]                    |
+| showCount | 同时可展示的数量 类型 number                       |
 | position  | 位置 可选值 ['ct', 'rt', 'lt', 'cb', 'lb', 'rb'] |
 | type      | 类型 可选值 ['info', 'success', 'warn', 'error'] |
-| duration  | 时长 单位：ms                                    |
-| colors    | 颜色配置，默认{success:'#4CAF50', info: '#00BCD4',                          warn: '#FF9800',error:'#FF5722', }|                                  
+| duration  | 时长 单位：ms 当值<0时，弹框不会自动关闭             |
+| colors    | 颜色配置，默认{success:'#4CAF50', info: '#00BCD4',warn: '#FF9800',error:'#FF5722', }|                                  
 
 
             
