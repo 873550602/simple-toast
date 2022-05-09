@@ -51,21 +51,20 @@ const icons = {
 const delay = (time) =>
   new Promise((resolve) => setTimeout(() => resolve(null), time));
 // 元素进入动画逻辑
-const moveIn = (el, value) => {
+const moveIn = async (el, value) => {
   const {
     index,
     options: { position },
   } = value;
-  if (position.includes("t")) {
-    const top = 30 + index * 60;
+  const top = 30 + index * 60;
+  if (position.includes('t')) {
     setTimeout(() => {
       el.style.top = `${top}px`;
-    });
-  } else if (position.includes("b")) {
-    const top = 30 + index * 60;
+    }, 50);
+  } else if (position.includes('b')) {
     setTimeout(() => {
       el.style.bottom = `${top}px`;
-    });
+    }, 50);
   }
 };
 
@@ -108,8 +107,7 @@ export default Vue.extend({
         options,
       });
       if (this.messages.length > options.showCount) {
-        this.messages
-          .splice(options.showCount)
+        this.messages.splice(options.showCount);
       }
       return id;
     },

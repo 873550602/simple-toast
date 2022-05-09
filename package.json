@@ -1,17 +1,24 @@
 {
   "name": "simp-toast",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "简单易用的toast工具",
   "homepage": "https://github.com/873550602/simple-toast",
   "author": {
     "name": "houxiang",
     "email": "873550602@qq.com"
   },
+  "keywords": [
+    "vue",
+    "simp-toast",
+    "vue-toast",
+    "toast"
+  ],
   "main": "src/index.js",
   "types": "src/types/index.d.ts",
   "private": false,
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "eslint -c .eslintrc.js"
   },
   "license": "ISC",
   "dependencies": {},
@@ -25,6 +32,8 @@
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
+    "eslint": "^8.15.0",
+    "eslint-plugin-vue": "^8.7.1",
     "file-loader": "^6.2.0",
     "style-loader": "^3.3.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
